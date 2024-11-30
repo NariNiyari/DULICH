@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tour du lịch</title>
+
+    <!-- Tải Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset các giá trị mặc định */
+        body, h1, p, form {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Thiết lập nền cho trang */
+        body {
+            background-color: #f0f8ff; /* Nền màu xanh nhạt */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Phần chứa form đăng ký */
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff; /* Màu nền trắng */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        .form-box h1 {
+            text-align: center;
+            color: #4A90E2; /* Xanh dương */
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Các nhóm input */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            color: #333;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #4A90E2; /* Xanh dương */
+            background-color: #e8f4ff;
+            outline: none;
+        }
+
+        /* Nút xác nhận */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4A90E2; /* Xanh dương */
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #357ABD; /* Màu xanh tối hơn khi hover */
+        }
+
+        /* Checkbox nhớ thông tin */
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-check input {
+            margin-right: 10px;
+        }
+
+        .form-check label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Thông báo thành công */
+        #confirmation-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #D4EDDA;
+            border: 1px solid #C3E6CB;
+            border-radius: 6px;
+            color: #155724;
+            margin-top: 20px;
+        }
+
+        /* Tùy chỉnh cho liên kết */
+        a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Phần chứa form đăng ký -->
+    <section class="form-container">
+        <div class="form-box">
+            <h1>Đăng ký tour du lịch</h1>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="name">Họ và tên:</label>
+                    <input type="text" id="name" name="name" required placeholder="Nhập họ và tên của bạn">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="Nhập email của bạn">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại của bạn">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="rememberMe" class="form-check-input">
+                    <label class="form-check-label" for="rememberMe">Nhớ thông tin</label>
+                </div>
+                <button type="submit">Xác nhận</button>
+            </form>
+            <!-- Thông báo thành công -->
+            <div id="confirmation-message">
+                <p>Chúc mừng bạn đã đăng ký tour du lịch thành công! Cảm ơn bạn đã quan tâm đến dịch vụ của chúng tôi.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Lắng nghe sự kiện khi form được gửi
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngừng gửi form theo cách mặc định
+
+            // Lấy thông tin từ form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // Hiển thị thông báo thành công
+            document.getElementById('confirmation-message').style.display = 'block';
+            document.getElementById('confirmation-message').style.opacity = '1';
+
+            // Chuyển hướng về trang chính với tham số thông báo thành công
+            setTimeout(function() {
+                window.location.href = 'index.html?registrationSuccess=true'; // Quay lại trang chính
+            }, 3000); // Sau 3 giây
+        });
+    </script>
+
+</body>
+</html>

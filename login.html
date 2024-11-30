@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+
+    <style>
+        /* Reset các giá trị mặc định */
+        body, h2, p, form {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Thiết lập nền trang */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f9fc;
+        }
+
+        /* Khung chứa form đăng nhập */
+        .login-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Tiêu đề */
+        .login-container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Nhãn cho các trường nhập */
+        .login-container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Các trường nhập liệu */
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 14px;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        .login-container input:focus {
+            border-color: #4c9aff;
+            background-color: #e8f4ff;
+            outline: none;
+        }
+
+        /* Nút đăng nhập */
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4c9aff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #3581e0;
+            transform: translateY(-2px);
+        }
+
+        /* Liên kết đăng ký */
+        .login-container p {
+            font-size: 14px;
+            color: #777;
+            margin-top: 15px;
+        }
+
+        .login-container a {
+            color: #4c9aff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .login-container a:hover {
+            color: #3581e0;
+        }
+
+        /* CSS cho trang quản lý tour */
+        .admin-dashboard {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .admin-dashboard h3 {
+            font-size: 24px;
+            color: #4c9aff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .admin-dashboard table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-dashboard th, .admin-dashboard td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .admin-dashboard th {
+            background-color: #4c9aff;
+            color: white;
+        }
+
+        .admin-dashboard button {
+            padding: 10px 20px;
+            background-color: #E94E77;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .admin-dashboard button:hover {
+            background-color: #c83a63;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Form đăng nhập -->
+    <div class="login-container" id="login-container">
+        <h2>Đăng nhập</h2>
+        <form id="login-form">
+            <label for="username">Tên người dùng:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Đăng nhập</button>
+        </form>
+        <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+    </div>
+
+    <!-- Trang quản lý tour (ẩn mặc định) -->
+    <div class="admin-dashboard" id="admin-dashboard">
+        <h3>Quản lý Tour Du Lịch</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Tour</th>
+                    <th>Giá</th>
+                    <th>Chỉnh sửa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Tour Sapa</td>
+                    <td>2.000.000 VNĐ</td>
+                    <td><button>Chỉnh sửa</button></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Tour Đà Nẵng</td>
+                    <td>3.000.000 VNĐ</td>
+                    <td><button>Chỉnh sửa</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="logout()">Đăng xuất</button>
+    </div>
+
+    <script>
+        // Xử lý đăng nhập
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Kiểm tra tài khoản admin
+            if (username === 'phong' && password === '123') {
+                // Chuyển hướng đến trang quản lý tour
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+            } else {
+                alert('Tên người dùng hoặc mật khẩu không chính xác. Vui lòng thử lại.');
+            }
+        });
+
+        // Xử lý đăng xuất
+        function logout() {
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('admin-dashboard').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+    </script>
+
+</body>
+</html>

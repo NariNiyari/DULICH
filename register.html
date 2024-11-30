@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+
+    <style>
+        /* Reset các giá trị mặc định */
+        body, h2, p, form {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Thiết lập nền trang */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff; /* Nền màu xanh nhạt */
+        }
+
+        /* Khung chứa form đăng ký */
+        .register-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Tiêu đề */
+        .register-container h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Nhãn cho các trường nhập */
+        .register-container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Các trường nhập liệu */
+        .register-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 14px;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        .register-container input:focus {
+            border-color: #6fa3ef; /* Xanh da trời tươi sáng */
+            background-color: #e0f1ff; /* Màu nền sáng nhẹ */
+            outline: none;
+        }
+
+        /* Nút đăng ký */
+        .register-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #6fa3ef; /* Xanh da trời tươi sáng */
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .register-container button:hover {
+            background-color: #3581e0;
+            transform: translateY(-2px);
+        }
+
+        /* Liên kết đăng nhập */
+        .register-container p {
+            font-size: 14px;
+            color: #777;
+            margin-top: 15px;
+        }
+
+        .register-container a {
+            color: #6fa3ef; /* Xanh da trời tươi sáng */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .register-container a:hover {
+            color: #3581e0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Đăng ký tài khoản mới</h2>
+
+        <form id="register-form">
+            <label for="username">Tên người dùng:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Xác nhận mật khẩu:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <button type="submit">Đăng ký</button>
+        </form>
+
+        <p>Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a></p>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngừng hành động mặc định của form
+
+            // Lấy giá trị từ form
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirm-password').value;
+
+            // Kiểm tra xem mật khẩu và xác nhận mật khẩu có khớp không
+            if (password !== confirmPassword) {
+                alert("Mật khẩu xác nhận không khớp. Vui lòng thử lại.");
+                return;
+            }
+
+            // Kiểm tra xem tên người dùng đã tồn tại trong localStorage chưa
+            let existingUser = localStorage.getItem('username');
+            if (existingUser) {
+                alert("Tên người dùng đã tồn tại. Vui lòng chọn tên khác.");
+                return;
+            }
+
+            // Lưu thông tin đăng ký vào localStorage (chỉ là ví dụ, không nên lưu mật khẩu trực tiếp)
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password); // Mật khẩu nên được mã hóa trong thực tế
+
+            // Chuyển hướng người dùng đến trang đăng nhập
+            alert("Đăng ký thành công! Vui lòng đăng nhập.");
+            window.location.href = 'login.html'; // Chuyển hướng đến trang login
+        });
+    </script>
+
+</body>
+</html>
